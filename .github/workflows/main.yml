@@ -14,7 +14,7 @@ jobs:
     steps:
     - name: Add Issue to Project
       id: add-issue-to-project
-      uses: yuhi-dosei/actions-add-issue-to-project@v1
+      uses: monry/actions-add-issue-to-project@v1
       with:
         github-token: ${{ env.GITHUB_TOKEN }}
         project-owner: ${{ env.PROJECT_OWNER }}
