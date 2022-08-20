@@ -15,7 +15,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Build App Bundle
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleDebug
       - uses: actions/upload-artifact@v2
         with:
           name: outputs
