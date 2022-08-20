@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">mousyo</string>
+    <string name="app_name">Globe</string>
+    <string name="register"><u>新規登録はこちら</u></string>
+    <string name="login"><u>既にアカウントをお持ちの方はこちら</u></string>
 </resources>
