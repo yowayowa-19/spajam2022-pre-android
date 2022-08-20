@@ -6,6 +6,9 @@ class SharedPreferencesService(private val context: Context) {
     companion object {
         private const val FILE_NAME = "Preferences"
         private const val KEY_USER_ID = "user_id"
+        private const val KEY_USE_CAR = "use_car"
+        private const val KEY_USE_AIRCON = "use_aircon"
+        private const val KEY_USE_TV = "use_tv"
         /*
         private const val KEY_SHOWN_FIRST_TUTORIAL = "shown_first_tutorial"
         private const val KEY_LAST_TAP_TIME_MILLIS = "last_tap_time_millis"
@@ -20,6 +23,24 @@ class SharedPreferencesService(private val context: Context) {
     fun saveUserId(userId: Int) {
         sharedPreferences.edit()
             .putInt(KEY_USER_ID, userId)
+            .apply()
+    }
+    fun useCar(): Boolean = sharedPreferences.getBoolean(KEY_USE_CAR, false)
+    fun saveUseCar(boolean: Boolean) {
+        sharedPreferences.edit()
+            .putBoolean(KEY_USE_CAR, boolean)
+            .apply()
+    }
+    fun useAircon(): Boolean = sharedPreferences.getBoolean(KEY_USE_AIRCON, false)
+    fun saveUseAircon(boolean: Boolean) {
+        sharedPreferences.edit()
+            .putBoolean(KEY_USE_AIRCON, boolean)
+            .apply()
+    }
+    fun useTv(): Boolean = sharedPreferences.getBoolean(KEY_USE_TV, false)
+    fun saveUseTv(boolean: Boolean) {
+        sharedPreferences.edit()
+            .putBoolean(KEY_USE_TV, boolean)
             .apply()
     }
     /* ユーティリティ使用例
