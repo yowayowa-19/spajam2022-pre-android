@@ -15,11 +15,13 @@ import kotlinx.coroutines.runBlocking
 import spajam.yowayowa.mousyo.R
 import spajam.yowayowa.mousyo.databinding.FragmentLoginBinding
 import spajam.yowayowa.mousyo.repository.AccountRepository
+import spajam.yowayowa.mousyo.util.SharedPreferencesService
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     lateinit var loginViewModel: LoginViewModel
     private val binding get() = _binding!!
+    private lateinit var sharedPreferencesService: SharedPreferencesService
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +32,7 @@ class LoginFragment : Fragment() {
         val accountRepository = AccountRepository()
         val factory = LoginViewModel.Factory(accountRepository)
         loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
+        sharedPreferencesService = SharedPreferencesService(requireContext())
         val root = binding.root
 
         loginViewModel.loginFailure.observe(
@@ -51,6 +54,7 @@ class LoginFragment : Fragment() {
                 val result = loginViewModel.login()
                 Toast.makeText(context, "result : $result", Toast.LENGTH_SHORT).show()
                 if (result != -1) {
+                    sharedPreferencesService.saveUserId(result)
                     startActivity(Intent(requireContext(), MainActivity::class.java))
                     activity?.finish()
                 } else loginViewModel.loginFailed()
