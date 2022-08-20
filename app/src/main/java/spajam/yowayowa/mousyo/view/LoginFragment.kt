@@ -1,6 +1,5 @@
 package spajam.yowayowa.mousyo.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,17 +34,11 @@ class LoginFragment : Fragment() {
 
         binding.loginButton.setOnClickListener {
             if (login(loginViewModel.usernameText.value, loginViewModel.passwordText.value)) {
-                startActivity(Intent(requireContext(), MainActivity::class.java))
-                activity?.finish()
+                navigateToLoginAcceptedFragment()
             }
         }
         binding.registerClickableTextView.setOnClickListener {
-            val navHostFragment = requireActivity()
-                .supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment_login_and_register) as NavHostFragment
-            val navController = navHostFragment.navController
-            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
-            navController.navigate(action)
+            navigateToRegisterFragment()
         }
         return root
     }
@@ -53,6 +46,24 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun navigateToRegisterFragment() {
+        val navHostFragment = requireActivity()
+            .supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_login_and_register) as NavHostFragment
+        val navController = navHostFragment.navController
+        val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+        navController.navigate(action)
+    }
+
+    private fun navigateToLoginAcceptedFragment() {
+        val navHostFragment = requireActivity()
+            .supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_login_and_register) as NavHostFragment
+        val navController = navHostFragment.navController
+        val action = LoginFragmentDirections.actionLoginFragmentToLoginAcceptedFragment()
+        navController.navigate(action)
     }
 
     // TODO:Implementation
