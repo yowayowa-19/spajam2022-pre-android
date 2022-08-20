@@ -13,10 +13,10 @@ mainブランチに対する変更に対して自動でビルドを行い、Depl
 また、[skip ci] をコミットメッセージに含めるとCIの実行をスキップすることができます。
 
 ## 便利コマンド
-> ./grawdrew ktlint
+> ./gradlew ktlint
 コードがいい感じかどうか判別してくれます
 
-> ./grawdrew ktlintFormat
+> ./gradlew ktlintFormat
 コードをいい感じに整形します
 
 tips : [pre-commit](https://pre-commit.com/) を導入すると便利です
