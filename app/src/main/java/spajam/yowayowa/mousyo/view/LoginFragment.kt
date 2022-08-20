@@ -18,9 +18,9 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater,container,false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root = binding.root
-        binding.registerClickableTextView.setOnClickListener{
+        binding.registerClickableTextView.setOnClickListener {
             val navHostFragment = requireActivity()
                 .supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment_login_and_register) as NavHostFragment

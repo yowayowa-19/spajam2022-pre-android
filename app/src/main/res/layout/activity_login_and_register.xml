@@ -13,5 +13,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/login_and_register_navigation" />
+        app:navGraph="@navigation/onboarding_navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>
