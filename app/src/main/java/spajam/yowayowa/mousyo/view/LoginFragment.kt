@@ -1,5 +1,6 @@
 package spajam.yowayowa.mousyo.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,14 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root = binding.root
+        binding.loginButton.setOnClickListener {
+            val username = binding.editTextTextUserName.text.toString()
+            val password = binding.editTextTextPassword.text.toString()
+            if (login(username, password)) {
+                startActivity(Intent(requireContext(), MainActivity::class.java))
+                activity?.finish()
+            }
+        }
         binding.registerClickableTextView.setOnClickListener {
             val navHostFragment = requireActivity()
                 .supportFragmentManager
@@ -34,5 +43,10 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    // TODO:Implementation
+    private fun login(username: String, password: String): Boolean {
+        return true
     }
 }
