@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import spajam.yowayowa.mousyo.R
 import spajam.yowayowa.mousyo.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
+    lateinit var loginViewModel: LoginViewModel
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -20,11 +23,18 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         val root = binding.root
+
+        binding.editTextTextUserName.doOnTextChanged { text, start, count, after ->
+            loginViewModel.setUsername(text.toString())
+        }
+        binding.editTextTextPassword.doOnTextChanged { text, start, count, after ->
+            loginViewModel.setPassword(text.toString())
+        }
+
         binding.loginButton.setOnClickListener {
-            val username = binding.editTextTextUserName.text.toString()
-            val password = binding.editTextTextPassword.text.toString()
-            if (login(username, password)) {
+            if (login(loginViewModel.usernameText.value, loginViewModel.passwordText.value)) {
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 activity?.finish()
             }
@@ -46,7 +56,8 @@ class LoginFragment : Fragment() {
     }
 
     // TODO:Implementation
-    private fun login(username: String, password: String): Boolean {
+    private fun login(username: String?, password: String?): Boolean {
+        println("username : $username, password : $password")
         return true
     }
 }
