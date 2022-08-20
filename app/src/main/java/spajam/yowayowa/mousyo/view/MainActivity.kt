@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         // debug
         binding.textView.text = "user_id : ${SharedPreferencesService(this).getUserId()}"
         binding.textView.setOnClickListener {
-            startActivity(Intent(this, LoginAndRegisterActivity::class.java))
+            startActivity(Intent(this, OnboardingActivity::class.java))
             this.finish()
         }
     }
