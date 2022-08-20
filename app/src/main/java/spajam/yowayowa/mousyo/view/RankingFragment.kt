@@ -1,5 +1,6 @@
 package spajam.yowayowa.mousyo.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,10 @@ class RankingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRankingBinding.inflate(inflater, container, false)
+        binding.textView.setOnClickListener {
+            startActivity(Intent(context, OnboardingActivity::class.java))
+            activity?.finish()
+        }
         return binding.root
     }
 

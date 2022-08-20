@@ -28,13 +28,5 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        // debug
-        /*
-        binding.textView.text = "user_id : ${SharedPreferencesService(this).getUserId()}"
-        binding.textView.setOnClickListener {
-            startActivity(Intent(this, OnboardingActivity::class.java))
-            this.finish()
-        }
-        */
     }
 }
