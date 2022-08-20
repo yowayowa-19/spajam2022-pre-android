@@ -56,6 +56,15 @@ dependencies {
 
     implementation "androidx.preference:preference-ktx:1.2.0"
     ktlint "com.pinterest:ktlint:0.43.1"
+
+    def retrofit_version = '2.5.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+
+    def moshi_version = '1.5.0'
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
 }
 
 // ktlint settings
