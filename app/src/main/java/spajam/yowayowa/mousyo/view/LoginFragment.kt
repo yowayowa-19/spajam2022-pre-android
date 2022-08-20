@@ -51,7 +51,6 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             runBlocking {
                 val result = loginViewModel.login()
-                Toast.makeText(context, "result : $result", Toast.LENGTH_SHORT).show()
                 if (result != -1) {
                     sharedPreferencesService.saveUserId(result)
                     navigateToLoginAcceptedFragment()
