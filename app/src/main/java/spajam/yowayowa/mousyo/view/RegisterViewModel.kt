@@ -4,6 +4,8 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import spajam.yowayowa.mousyo.repository.AccountRepository
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class RegisterViewModel(
     private val accountRepository: AccountRepository,
@@ -36,14 +38,21 @@ class RegisterViewModel(
         _passwordText.value = text
     }
 
-    fun register() {
-        viewModelScope.launch(Dispatchers.IO) {
-            kotlin.runCatching {
-                accountRepository.register(
-                    _usernameText.value.toString(),
-                    _passwordText.value.toString(),
-                )
-            }.onSuccess { println("Success") }.onFailure { e -> println("Failure $e") }
+    suspend fun register(): Boolean {
+        return suspendCoroutine { continuation ->
+            viewModelScope.launch(Dispatchers.IO) {
+                kotlin.runCatching {
+                    accountRepository.register(
+                        _usernameText.value.toString(),
+                        _passwordText.value.toString(),
+                    )
+                }.onSuccess {
+                    continuation.resume(true)
+                }.onFailure { e ->
+                    println("Failure $e")
+                    continuation.resume(false)
+                }
+            }
         }
     }
 }

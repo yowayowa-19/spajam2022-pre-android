@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import kotlinx.coroutines.runBlocking
 import spajam.yowayowa.mousyo.R
 import spajam.yowayowa.mousyo.databinding.FragmentRegisterBinding
 import spajam.yowayowa.mousyo.repository.AccountRepository
@@ -35,8 +37,13 @@ class RegisterFragment : Fragment() {
             registerViewModel.setPassword(text.toString())
         }
         binding.registerButton.setOnClickListener {
-            println("call register")
-            registerViewModel.register()
+            runBlocking {
+                val result = registerViewModel.register()
+                if (result) {
+                    Toast.makeText(context, "ユーザー登録が完了しました\n ログインしてください", Toast.LENGTH_SHORT).show()
+                    navigate()
+                } else Toast.makeText(context, "ユーザー登録に失敗しました", Toast.LENGTH_SHORT).show()
+            }
         }
         return root
     }
