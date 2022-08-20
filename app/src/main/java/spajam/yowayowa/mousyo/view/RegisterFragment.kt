@@ -45,6 +45,9 @@ class RegisterFragment : Fragment() {
                 } else Toast.makeText(context, "ユーザー登録に失敗しました", Toast.LENGTH_SHORT).show()
             }
         }
+        binding.clickableTextView.setOnClickListener {
+            navigate()
+        }
         return root
     }
 
