@@ -5,6 +5,6 @@ import retrofit2.http.POST
 
 interface AccountAPI {
     @POST("users/register")
-    suspend fun register(@Body userInfo: UserInfo)
-    data class UserInfo(val email: String, val user_name: String, val password: String)
+    suspend fun register(@Body credential: Credential)
+    data class Credential(val email: String, val user_name: String, val password: String)
 }

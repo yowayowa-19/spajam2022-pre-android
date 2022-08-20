@@ -11,6 +11,6 @@ class AccountRepository() {
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
         val service = retrofit.create(AccountAPI::class.java)
-        service.register(AccountAPI.UserInfo("", userName, password))
+        service.register(AccountAPI.Credential("", userName, password))
     }
 }
