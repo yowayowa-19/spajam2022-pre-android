@@ -6,9 +6,11 @@ class SharedPreferencesService(private val context: Context) {
     companion object {
         private const val FILE_NAME = "Preferences"
         private const val KEY_USER_ID = "user_id"
+        private const val KEY_USER_NAME = "user_name"
         private const val KEY_USE_CAR = "use_car"
         private const val KEY_USE_AIRCON = "use_aircon"
         private const val KEY_USE_TV = "use_tv"
+        private const val KEY_TOTAL_POINTS = "total_points"
         /*
         private const val KEY_SHOWN_FIRST_TUTORIAL = "shown_first_tutorial"
         private const val KEY_LAST_TAP_TIME_MILLIS = "last_tap_time_millis"
@@ -25,6 +27,14 @@ class SharedPreferencesService(private val context: Context) {
             .putInt(KEY_USER_ID, userId)
             .apply()
     }
+
+    fun getUserName(): String? = sharedPreferences.getString(KEY_USER_NAME, "")
+    fun saveUserName(userName: String) {
+        sharedPreferences.edit()
+            .putString(KEY_USER_NAME, userName)
+            .apply()
+    }
+
     fun useCar(): Boolean = sharedPreferences.getBoolean(KEY_USE_CAR, false)
     fun saveUseCar(boolean: Boolean) {
         sharedPreferences.edit()
@@ -41,6 +51,13 @@ class SharedPreferencesService(private val context: Context) {
     fun saveUseTv(boolean: Boolean) {
         sharedPreferences.edit()
             .putBoolean(KEY_USE_TV, boolean)
+            .apply()
+    }
+
+    fun getTotalPoints(): Int = sharedPreferences.getInt(KEY_TOTAL_POINTS, 0)
+    fun saveTotalPoints(int: Int) {
+        sharedPreferences.edit()
+            .putInt(KEY_TOTAL_POINTS, int)
             .apply()
     }
     /* ユーティリティ使用例
