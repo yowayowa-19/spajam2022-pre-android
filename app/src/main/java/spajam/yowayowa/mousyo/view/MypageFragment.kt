@@ -24,6 +24,15 @@ class MypageFragment : Fragment() {
         binding.carCheckBoxMypage.isChecked = sharedPreferencesService.useCar()
         binding.airconCheckBoxMypage.isChecked = sharedPreferencesService.useAircon()
         binding.tvCheckBoxMypage.isChecked = sharedPreferencesService.useTv()
+        binding.carCheckBoxMypage.setOnClickListener {
+            sharedPreferencesService.saveUseCar(binding.carCheckBoxMypage.isChecked)
+        }
+        binding.airconCheckBoxMypage.setOnClickListener {
+            sharedPreferencesService.saveUseCar(binding.airconCheckBoxMypage.isChecked)
+        }
+        binding.tvCheckBoxMypage.setOnClickListener {
+            sharedPreferencesService.saveUseCar(binding.tvCheckBoxMypage.isChecked)
+        }
         val userName = sharedPreferencesService.getUserName()!!
         binding.userNameMainPage.text = userName
         return binding.root
