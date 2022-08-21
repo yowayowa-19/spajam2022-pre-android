@@ -1,4 +1,4 @@
-package spajam.yowayowa.mousyo.view
+package spajam.yowayowa.mousyo.view.user_interest
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import spajam.yowayowa.mousyo.databinding.FragmentUserInterestSettingBinding
 import spajam.yowayowa.mousyo.util.SharedPreferencesService
+import spajam.yowayowa.mousyo.view.MainActivity
 
 class UserInterestSettingsFragment : Fragment() {
     private var _binding: FragmentUserInterestSettingBinding? = null

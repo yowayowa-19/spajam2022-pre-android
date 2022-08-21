@@ -1,4 +1,4 @@
-package spajam.yowayowa.mousyo.view
+package spajam.yowayowa.mousyo.view.user_interest
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
