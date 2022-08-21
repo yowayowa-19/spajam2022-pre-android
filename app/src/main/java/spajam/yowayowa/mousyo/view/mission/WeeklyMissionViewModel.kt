@@ -15,8 +15,8 @@ class WeeklyMissionViewModel : ViewModel() {
     val missions: LiveData<List<Mission>>
         get() = _missions
     private fun loadMissionsMoq(): List<Mission> {
-        val mission1 = Mission(1, "エアコンを7時間つける", "", 1, 0, false)
-        val mission2 = Mission(2, "昼間に電気を10時間つける", "", 5, 0, false)
+        val mission1 = Mission(1, "エアコンを7時間つける", "", 10, 0, false)
+        val mission2 = Mission(2, "昼間に電気を10時間つける", "", 20, 0, false)
         return listOf(mission1, mission2)
     }
     fun deleteMission(target: Mission) {
