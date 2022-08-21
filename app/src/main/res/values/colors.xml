@@ -6,9 +6,11 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="gray">#FF888888</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#F00000</color>
-    <color name="semiWhite">#FAFAFA</color>
+    <color name="semiWhite">#FAFAFA</color>>
+    <color name="semiGray">#B6B6B6</color>
     <color name="Green">#46A500</color>
     <color name="limeGreen">#60E100</color>
     <color name="semiLimeGreen">#8FF86A</color>
