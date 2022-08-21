@@ -32,10 +32,10 @@ class DailyMissionViewModel(
         val mission2 = Mission(2, "昼間に電気を5時間つける", "", 5, 0, false)
         return listOf(mission1, mission2)
     }
-    fun setMissions(missions : List<Mission>){
+    fun setMissions(missions: List<Mission>) {
         _missions.value = missions
     }
-    suspend fun loadMissions(user_id:Int):List<Mission>{
+    suspend fun loadMissions(user_id: Int): List<Mission> {
         return suspendCoroutine { continuation ->
             viewModelScope.launch(Dispatchers.IO) {
                 kotlin.runCatching {

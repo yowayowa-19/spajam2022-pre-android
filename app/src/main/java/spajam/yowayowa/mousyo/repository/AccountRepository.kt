@@ -25,11 +25,11 @@ class AccountRepository() {
         return service.login(AccountAPI.Credential("", userName, password))
     }
 
-    suspend fun getUserInfo(userId: Int): Response<UserInfo>{
+    suspend fun getUserInfo(userId: Int): Response<UserInfo> {
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://materialofmouse.aa0.netvolante.jp:25800/")
-                .addConverterFactory(MoshiConverterFactory.create())
-                .build()
+            .baseUrl("http://materialofmouse.aa0.netvolante.jp:25800/")
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
         val service = retrofit.create(AccountAPI::class.java)
         return service.getUserInfo(userId)
     }

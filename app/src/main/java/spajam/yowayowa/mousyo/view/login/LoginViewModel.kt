@@ -6,7 +6,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import spajam.yowayowa.mousyo.api.response.UserInfo
 import spajam.yowayowa.mousyo.repository.AccountRepository
-import spajam.yowayowa.mousyo.util.SharedPreferencesService
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -33,12 +32,11 @@ class LoginViewModel(
     private val _totalPoints = MutableLiveData<Int>().apply {
         value = 0
     }
-    val totalPoints : LiveData<Int>
+    val totalPoints: LiveData<Int>
         get() = _totalPoints
-    fun setTotalPoints(totalPoints: Int){
+    fun setTotalPoints(totalPoints: Int) {
         _totalPoints.value = totalPoints
     }
-
 
     private val _passwordText = MutableLiveData<String>().apply {
         value = ""
@@ -57,7 +55,6 @@ class LoginViewModel(
     fun loginFailed() {
         _loginFailure.value = true
     }
-
 
     suspend fun login(): Int {
         return suspendCoroutine { continuation ->
@@ -79,13 +76,13 @@ class LoginViewModel(
 
     suspend fun getUserInfo(userId: Int): UserInfo {
         return suspendCoroutine { continuation ->
-            viewModelScope.launch (Dispatchers.IO){
+            viewModelScope.launch(Dispatchers.IO) {
                 kotlin.runCatching {
                     accountRepository.getUserInfo(
                         userId
                     )
                 }.onSuccess {
-                    continuation.resume(it.body()?:UserInfo("", 0))
+                    continuation.resume(it.body() ?: UserInfo("", 0))
                 }.onFailure { e ->
                     Log.e("getUserInfo", "Failure: $e")
                     continuation.resume(UserInfo("", 0))

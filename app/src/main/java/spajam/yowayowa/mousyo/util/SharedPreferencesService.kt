@@ -29,7 +29,7 @@ class SharedPreferencesService(private val context: Context) {
     }
 
     fun getUserName(): String? = sharedPreferences.getString(KEY_USER_NAME, "")
-    fun saveUserName(userName: String){
+    fun saveUserName(userName: String) {
         sharedPreferences.edit()
             .putString(KEY_USER_NAME, userName)
             .apply()
@@ -55,10 +55,10 @@ class SharedPreferencesService(private val context: Context) {
     }
 
     fun getTotalPoints(): Int = sharedPreferences.getInt(KEY_TOTAL_POINTS, 0)
-    fun saveTotalPoints(int: Int){
+    fun saveTotalPoints(int: Int) {
         sharedPreferences.edit()
-                .putInt(KEY_TOTAL_POINTS,int)
-                .apply()
+            .putInt(KEY_TOTAL_POINTS, int)
+            .apply()
     }
     /* ユーティリティ使用例
     fun isShownFirstTutorial():Boolean = sharedPreferences.getBoolean(KEY_SHOWN_FIRST_TUTORIAL,false)

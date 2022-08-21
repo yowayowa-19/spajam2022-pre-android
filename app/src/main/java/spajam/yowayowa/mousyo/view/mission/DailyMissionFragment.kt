@@ -9,13 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import spajam.yowayowa.mousyo.databinding.FragmentMissionTemplateBinding
 import spajam.yowayowa.mousyo.model.Mission
 import spajam.yowayowa.mousyo.repository.MissionRepository
 import spajam.yowayowa.mousyo.util.SharedPreferencesService
-import spajam.yowayowa.mousyo.view.login.LoginViewModel
 
 class DailyMissionFragment : Fragment() {
 
@@ -37,7 +35,7 @@ class DailyMissionFragment : Fragment() {
 
         sharedPreferencesService = SharedPreferencesService(requireContext())
 
-        dailyMissionViewModel = ViewModelProvider(this,factory)[DailyMissionViewModel::class.java]
+        dailyMissionViewModel = ViewModelProvider(this, factory)[DailyMissionViewModel::class.java]
         _binding = FragmentMissionTemplateBinding.inflate(inflater, container, false)
         dailyMissionViewModel.missions.observe(
             viewLifecycleOwner,
@@ -64,7 +62,7 @@ class DailyMissionFragment : Fragment() {
             }
         )
         val root: View = binding.root
-        val userid =  sharedPreferencesService.getUserId()
+        val userid = sharedPreferencesService.getUserId()
         println("userid = $userid")
         runBlocking {
             kotlin.runCatching {
