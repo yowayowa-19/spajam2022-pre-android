@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_mission"
-        android:name="spajam.yowayowa.mousyo.view.MissionFragment"
+        android:name="spajam.yowayowa.mousyo.view.mission.MissionFragment"
         android:label="MissionFragment"
         tools:layout="@layout/fragment_mission"/>
     <fragment
