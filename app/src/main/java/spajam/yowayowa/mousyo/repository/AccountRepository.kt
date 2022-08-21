@@ -31,6 +31,6 @@ class AccountRepository() {
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
         val service = retrofit.create(AccountAPI::class.java)
-        return service.getUserInfo(UserId(userId))
+        return service.getUserInfo(userId)
     }
 }

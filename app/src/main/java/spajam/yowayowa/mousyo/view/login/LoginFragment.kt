@@ -1,6 +1,7 @@
 package spajam.yowayowa.mousyo.view.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,7 @@ class LoginFragment : Fragment() {
                 val result = loginViewModel.login()
                 if (result != -1) {
                     val r = loginViewModel.getUserInfo(result)
+                    Log.d("UserInfo", "$r")
                     sharedPreferencesService.saveUserId(result)
                     sharedPreferencesService.saveUserName(r.user_name)
                     sharedPreferencesService.saveTotalPoints(r.total_points)
