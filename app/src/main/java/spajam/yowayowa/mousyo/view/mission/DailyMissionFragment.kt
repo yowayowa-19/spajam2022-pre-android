@@ -9,13 +9,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import spajam.yowayowa.mousyo.databinding.FragmentMissionTemplateBinding
 import spajam.yowayowa.mousyo.model.Mission
+import spajam.yowayowa.mousyo.repository.MissionRepository
+import spajam.yowayowa.mousyo.util.SharedPreferencesService
+import spajam.yowayowa.mousyo.view.login.LoginViewModel
 
 class DailyMissionFragment : Fragment() {
 
     private lateinit var dailyMissionViewModel: DailyMissionViewModel
     private var _binding: FragmentMissionTemplateBinding? = null
+    private lateinit var sharedPreferencesService: SharedPreferencesService
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,7 +32,12 @@ class DailyMissionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dailyMissionViewModel = ViewModelProvider(this)[DailyMissionViewModel::class.java]
+        val missionRepository = MissionRepository()
+        val factory = DailyMissionViewModel.Factory(missionRepository)
+
+        sharedPreferencesService = SharedPreferencesService(requireContext())
+
+        dailyMissionViewModel = ViewModelProvider(this,factory)[DailyMissionViewModel::class.java]
         _binding = FragmentMissionTemplateBinding.inflate(inflater, container, false)
         dailyMissionViewModel.missions.observe(
             viewLifecycleOwner,
@@ -53,6 +64,14 @@ class DailyMissionFragment : Fragment() {
             }
         )
         val root: View = binding.root
+        val userid =  sharedPreferencesService.getUserId()
+        println("userid = $userid")
+        runBlocking {
+            kotlin.runCatching {
+                val result = dailyMissionViewModel.loadMissions(userid)
+                dailyMissionViewModel.setMissions(result)
+            }.onSuccess { println(dailyMissionViewModel.missions.value) }.onFailure { e -> println(e) }
+        }
         return root
     }
 
