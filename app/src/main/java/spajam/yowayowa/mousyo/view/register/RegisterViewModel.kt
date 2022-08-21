@@ -1,4 +1,4 @@
-package spajam.yowayowa.mousyo.view
+package spajam.yowayowa.mousyo.view.register
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="spajam.yowayowa.mousyo.view.LoginFragment"
+        android:name="spajam.yowayowa.mousyo.view.login.LoginFragment"
         android:label="ログイン画面"
         tools:layout="@layout/fragment_login">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="spajam.yowayowa.mousyo.view.RegisterFragment"
+        android:name="spajam.yowayowa.mousyo.view.register.RegisterFragment"
         android:label="ユーザー登録画面"
         tools:layout="@layout/fragment_register">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginAcceptedFragment"
-        android:name="spajam.yowayowa.mousyo.view.LoginAcceptedFragment"
+        android:name="spajam.yowayowa.mousyo.view.login_accepted.LoginAcceptedFragment"
         android:label="LoginAcceptedFragment"
         tools:layout="@layout/fragment_login_accepted" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/userInterestSettingsFragment"
-        android:name="spajam.yowayowa.mousyo.view.UserInterestSettingsFragment"
+        android:name="spajam.yowayowa.mousyo.view.user_interest.UserInterestSettingsFragment"
         android:label="UserInterestSettingsFragment"
         tools:layout="@layout/fragment_user_interest_setting"/>
 </navigation>
