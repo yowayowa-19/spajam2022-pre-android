@@ -1,9 +1,12 @@
 package spajam.yowayowa.mousyo.view.login
 
+import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import spajam.yowayowa.mousyo.api.response.UserInfo
 import spajam.yowayowa.mousyo.repository.AccountRepository
+import spajam.yowayowa.mousyo.util.SharedPreferencesService
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -18,14 +21,24 @@ class LoginViewModel(
             return LoginViewModel(accountRepository) as T
         }
     }
-    private val _usernameText = MutableLiveData<String>().apply {
+    private val _userName = MutableLiveData<String>().apply {
         value = ""
     }
-    val usernameText: LiveData<String>
-        get() = _usernameText
+    val userName: LiveData<String>
+        get() = _userName
     fun setUsername(text: String) {
-        _usernameText.value = text
+        _userName.value = text
     }
+
+    private val _totalPoints = MutableLiveData<Int>().apply {
+        value = 0
+    }
+    val totalPoints : LiveData<Int>
+        get() = _totalPoints
+    fun setTotalPoints(totalPoints: Int){
+        _totalPoints.value = totalPoints
+    }
+
 
     private val _passwordText = MutableLiveData<String>().apply {
         value = ""
@@ -45,12 +58,13 @@ class LoginViewModel(
         _loginFailure.value = true
     }
 
+
     suspend fun login(): Int {
         return suspendCoroutine { continuation ->
             viewModelScope.launch(Dispatchers.IO) {
                 kotlin.runCatching {
                     accountRepository.login(
-                        _usernameText.value.toString(),
+                        _userName.value.toString(),
                         _passwordText.value.toString(),
                     )
                 }.onSuccess {
@@ -58,6 +72,23 @@ class LoginViewModel(
                 }.onFailure { e ->
                     println("Failure $e")
                     continuation.resume(-1)
+                }
+            }
+        }
+    }
+
+    suspend fun getUserInfo(userId: Int): UserInfo {
+        return suspendCoroutine { continuation ->
+            viewModelScope.launch (Dispatchers.IO){
+                kotlin.runCatching {
+                    accountRepository.getUserInfo(
+                        userId
+                    )
+                }.onSuccess {
+                    continuation.resume(it.body()?:UserInfo("", 0))
+                }.onFailure { e ->
+                    Log.e("getUserInfo", "Failure: $e")
+                    continuation.resume(UserInfo("", 0))
                 }
             }
         }

@@ -1,22 +1,36 @@
 package spajam.yowayowa.mousyo.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import spajam.yowayowa.mousyo.R
 import spajam.yowayowa.mousyo.databinding.FragmentMypageBinding
+import spajam.yowayowa.mousyo.util.SharedPreferencesService
 
 class MypageFragment : Fragment() {
     private var _binding: FragmentMypageBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var sharedPresentException: SharedPreferencesService
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMypageBinding.inflate(inflater, container, false)
+        sharedPresentException = SharedPreferencesService(requireContext())
+        val userName = sharedPresentException.getUserName()!!
+        Log.d("UserName", "$userName")
+        binding.userNameMainPage.text = userName
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroyView() {

@@ -51,7 +51,10 @@ class LoginFragment : Fragment() {
             runBlocking {
                 val result = loginViewModel.login()
                 if (result != -1) {
+                    val r = loginViewModel.getUserInfo(result)
                     sharedPreferencesService.saveUserId(result)
+                    sharedPreferencesService.saveUserName(r.user_name)
+                    sharedPreferencesService.saveTotalPoints(r.total_points)
                     navigateToLoginAcceptedFragment()
                 } else loginViewModel.loginFailed()
             }
