@@ -1,4 +1,4 @@
-package spajam.yowayowa.mousyo.view
+package spajam.yowayowa.mousyo.view.login_accepted
 
 import android.os.Bundle
 import android.view.LayoutInflater
