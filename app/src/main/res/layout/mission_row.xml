@@ -5,20 +5,32 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/title"
+
+    <FrameLayout
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:background="@drawable/white_green"
+        android:gravity="center"
         android:layout_margin="8dp"
         android:padding="8dp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:background="@drawable/white_green"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="100m以内の移動に車を使う" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="100m以内の移動に車を使う" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
